@@ -1,5 +1,7 @@
 
 require './config/environment'
+require "rails_erd/diagram/graphviz"
+
 
 if ActiveRecord::Migrator.needs_migration?
   raise 'Migrations are pending. Run `rake db:migrate` to resolve the issue.'
@@ -12,3 +14,5 @@ Burner.create(name: "Health") unless Burner.find_by(name: "Health")
 
 use Rack::MethodOverride
 run ApplicationController
+
+RailsERD::Diagram::Graphviz.create
